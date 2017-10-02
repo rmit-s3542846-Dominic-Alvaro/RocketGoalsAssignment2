@@ -20,12 +20,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var myDescrPass: String?
     
     var myCatagoryPass: String?
+    var myString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
+    
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain , target: nil, action: nil)
         
         
     }
