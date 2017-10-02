@@ -56,6 +56,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         goal.term = termTextField.text!
         goal.descr = addDescrTextField.text!
         
+        
         //Save the data to coredata
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         

@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         myGoalPass = task.name!
         myTermPass = task.term!
         myDescrPass = task.descr!
-        myCatagoryPass = task.catagory!
+        //myCatagoryPass = task.catagory!
         
         cell.textLabel?.text = task.name!
         
@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 destination.myGoal = task.name!
                 destination.myTerm = task.term!
                 destination.myDescr = task.descr!
-                destination.myCatagory = task.catagory!
+                //destination.myCatagory = task.catagory!
             }
             
             

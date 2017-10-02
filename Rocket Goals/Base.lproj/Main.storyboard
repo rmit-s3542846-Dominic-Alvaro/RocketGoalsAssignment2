@@ -144,7 +144,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iun-bb-eer">
-                                <rect key="frame" x="9" y="362" width="142" height="176"/>
+                                <rect key="frame" x="9" y="362" width="160" height="176"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="wep-fT-PQm" id="Z3v-Pj-9Jz"/>
