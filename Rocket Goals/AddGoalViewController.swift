@@ -41,8 +41,6 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         //This is an object that access a property called persistant container in app delegate.swift
         let pickerViewGoal = Task(context: context)
         pickerViewGoal.catagory = catagory[row]
-        
-        
     }
     
     
@@ -55,7 +53,6 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         goal.name = goalTextField.text!
         goal.term = termTextField.text!
         goal.descr = addDescrTextField.text!
-        
         
         //Save the data to coredata
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
