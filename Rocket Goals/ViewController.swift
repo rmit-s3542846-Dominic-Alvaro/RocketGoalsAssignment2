@@ -52,12 +52,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         let task = tasks[indexPath.row]
         
-        myGoalPass = task.name
-        myTermPass = task.term
-        myDescrPass = task.descr
-        myCatagoryPass = task.catagory
+        myGoalPass = task.name!
+        myTermPass = task.term!
+        myDescrPass = task.descr!
+        myCatagoryPass = task.catagory!
         
-        cell.textLabel?.text = task.name
+        cell.textLabel?.text = task.name!
         
         
             
@@ -93,10 +93,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if let indexPath = tableView.indexPathForSelectedRow {
                 let task = tasks[indexPath.row]
                 let destination = segue.destination as! DetailViewController
-                destination.myGoal = task.name
-                destination.myTerm = task.term
-                destination.myDescr = task.descr
-                destination.myCatagory = task.catagory
+                destination.myGoal = task.name!
+                destination.myTerm = task.term!
+                destination.myDescr = task.descr!
+                destination.myCatagory = task.catagory!
             }
             
             

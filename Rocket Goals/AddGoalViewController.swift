@@ -18,7 +18,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
 
     let catagory = ["Fitness","Academic","Personal","Work","Travel"]
-    
+    var cataPicker: String?
 
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -36,11 +36,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         //This is where I will save what the user picks, so similiar to when a user writes something and I save it to core data. I will do the same here x
-        let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        //This is an object that access a property called persistant container in app delegate.swift
-        let pickerViewGoal = Task(context: context)
-        pickerViewGoal.catagory = catagory[row]
+        cataPicker = catagory[row]
     }
     
     
@@ -53,6 +50,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         goal.name = goalTextField.text!
         goal.term = termTextField.text!
         goal.descr = addDescrTextField.text!
+        goal.catagory = cataPicker!
         
         //Save the data to coredata
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
