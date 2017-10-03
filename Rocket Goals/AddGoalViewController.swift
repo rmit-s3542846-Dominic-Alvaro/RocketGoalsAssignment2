@@ -17,7 +17,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var pickerViewCat: UIPickerView!
     
 
-    let catagory = ["Fitness","Academic","Personal","Work","Travel"]
+    var catagory = ["Fitness","Academic","Personal","Work","Travel"]
     var cataPicker: String?
 
 
@@ -36,7 +36,6 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         //This is where I will save what the user picks, so similiar to when a user writes something and I save it to core data. I will do the same here x
-        
         cataPicker = catagory[row]
     }
     
