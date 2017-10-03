@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         goalLabel.text = myGoal
         termLabel.text = myTerm
         descrText.text = myDescr
-        catagoryText.text = myCatagory
+        //catagoryText.text = myCatagory
     }
 
     override func didReceiveMemoryWarning() {

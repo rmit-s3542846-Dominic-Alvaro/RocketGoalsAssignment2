@@ -9,25 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     
     @IBOutlet weak var tableView: UITableView!
     
     var tasks : [Task] = []
-
+    
     var myGoalPass: String?
     var myTermPass: String?
     var myDescrPass: String?
     
     var myCatagoryPass: String?
-    var myString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-    
-    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain , target: nil, action: nil)
+        
         
         
     }
@@ -45,26 +43,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return tasks.count
     }
-        
-        
+    
+    
     // Code here is for loading in the data from the add goal screen into the goal cellsis
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-       
+        
         let cell = UITableViewCell()
-            
+        
         let task = tasks[indexPath.row]
         
         myGoalPass = task.name!
         myTermPass = task.term!
         myDescrPass = task.descr!
-        //myCatagoryPass = task.catagory!
+        myCatagoryPass = task.catagory!
         
         cell.textLabel?.text = task.name!
         
         
-            
+        
         return cell
-            
+        
     }
     
     func getData() {
@@ -103,9 +101,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             
             
-                
             
-
+            
+            
         }
         
         
@@ -133,6 +131,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
     
-
+    
 }
-

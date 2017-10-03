@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="939"/>
+            <point key="canvasLocation" x="938" y="939"/>
         </scene>
         <!--ENTER A GOAL-->
         <scene sceneID="aOJ-Ey-r7F">
@@ -154,6 +154,17 @@
                                     <outlet property="delegate" destination="wep-fT-PQm" id="9fc-ZJ-5d1"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPy-sH-fjw">
+                                <rect key="frame" x="231" y="392" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Add a picture">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPicture:" destination="wep-fT-PQm" eventType="touchUpInside" id="qJF-Wq-wlY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.27175792770000001" green="0.32097855359999999" blue="0.42118573050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -177,6 +188,7 @@
                     <connections>
                         <outlet property="addDescrTextField" destination="JPV-N4-fHu" id="01g-vM-2tc"/>
                         <outlet property="addGoalButton" destination="1qI-gy-a0S" id="hcJ-Xg-hik"/>
+                        <outlet property="addPicture" destination="JPy-sH-fjw" id="PnO-lK-8GI"/>
                         <outlet property="goalTextField" destination="SQH-CD-bQA" id="lfs-xi-giB"/>
                         <outlet property="pickerViewCat" destination="iun-bb-eer" id="fOJ-WF-rOb"/>
                         <outlet property="termTextField" destination="BzE-KC-0Y3" id="h6T-Ay-i0K"/>
@@ -184,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7v-pm-O4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650" y="939"/>
+            <point key="canvasLocation" x="1776.8" y="938.68065967016503"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="9Yq-ht-oES">
@@ -255,7 +267,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="356" y="939"/>
+            <point key="canvasLocation" x="244" y="939"/>
         </scene>
         <!--Flickr Photos View Controller-->
         <scene sceneID="fhw-VB-QE8">
@@ -318,7 +330,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMg-Ez-vTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356" y="1827"/>
+            <point key="canvasLocation" x="243" y="1702"/>
         </scene>
         <!--View Goal-->
         <scene sceneID="UTT-kW-5Vv">
@@ -333,37 +345,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zt-ic-Uwk">
-                                <rect key="frame" x="16" y="76" width="49.5" height="21"/>
+                                <rect key="frame" x="16" y="32" width="49.5" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMK-TT-oCq">
-                                <rect key="frame" x="16" y="148" width="53" height="21"/>
+                                <rect key="frame" x="16" y="104" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8K-mp-Zru">
-                                <rect key="frame" x="16" y="215" width="121.5" height="21"/>
+                                <rect key="frame" x="16" y="171" width="121.5" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7U-KK-76t">
-                                <rect key="frame" x="16" y="105" width="343" height="18"/>
+                                <rect key="frame" x="16" y="61" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxf-3h-wyI">
-                                <rect key="frame" x="16" y="177" width="343" height="18"/>
+                                <rect key="frame" x="16" y="133" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add your description here ..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zUe-AI-A0A">
-                                <rect key="frame" x="16" y="244" width="340" height="218"/>
+                                <rect key="frame" x="16" y="200" width="340" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -429,7 +441,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myf-zr-NzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-214" y="939"/>
+            <point key="canvasLocation" x="-532" y="939"/>
         </scene>
     </scenes>
     <color key="tintColor" red="1" green="0.99320426669999995" blue="0.99136276459999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
