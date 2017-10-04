@@ -25,9 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        
-        
+    
     }
     
     
@@ -98,11 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 destination.myDescr = task.descr!
                 destination.myCatagory = task.catagory!
             }
-            
-            
-            
-            
-            
+   
             
         }
         

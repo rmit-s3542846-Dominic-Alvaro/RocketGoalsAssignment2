@@ -15,6 +15,10 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var addGoalButton: UIButton!
     @IBOutlet weak var addDescrTextField: UITextView!
     @IBOutlet weak var pickerViewCat: UIPickerView!
+   
+    @IBOutlet var addPicView: UIView!
+    @IBOutlet weak var visualView: UIVisualEffectView!
+    var effect:UIVisualEffect!
     
     
     var catagory = ["Fitness","Academic","Personal","Work","Travel"]
@@ -57,15 +61,63 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         navigationController!.popViewController(animated: true)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         addGoalButton.layer.cornerRadius = 5
         
+        effect = visualView.effect
+        visualView.effect = nil
+        
+        addPicView.layer.cornerRadius = 5
     }
     
+    func animateIn()
+    {
+        self.view.addSubview(addPicView)
+        addPicView.center = self.view.center
+        addPicView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        addPicView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4)
+        {
+            self.visualView.effect = self.effect
+            self.addPicView.alpha = 1
+            self.addPicView.transform = CGAffineTransform.identity
+        }
+        
+    }
+    func animateOut()
+    {
+        UIView.animate(withDuration: 0.3, animations:
+            {
+                self.addPicView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+                self.addPicView.alpha = 0
+                self.visualView.effect = nil
+        }) { (success:Bool) in
+            self.addPicView.removeFromSuperview()
+        }
+    }
+
+    @IBAction func addPic(_ sender: Any)
+    {
+        animateIn()
+    }
+    @IBAction func donePic(_ sender: Any)
+    {
+        animateOut()
+    }
+    
+    
+    
+//    @IBAction func addPic(_ sender: Any)
+//    {
+//        let actVC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
+//        actVC.popoverPresentationController?.sourceView = self.view
+//        
+//        self.present(actVC, animated: true, completion: nil)
+//    }
     
     
 }
