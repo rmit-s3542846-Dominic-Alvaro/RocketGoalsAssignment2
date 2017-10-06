@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var goalTextField: UITextField!
     @IBOutlet weak var termTextField: UITextField!
@@ -109,7 +109,35 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         animateOut()
     }
     
+    @IBOutlet weak var myImageView: UIImageView! 
+   
+    @IBAction func imageImport(_ sender: AnyObject)
+    {
+        let image = UIImagePickerController()
+        image.delegate = self
+        
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true)
+        {
+           //
+        }
+    }
     
+   
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            myImageView.image = image
+        }
+        else
+        {
+            //error
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
 //    @IBAction func addPic(_ sender: Any)
 //    {
