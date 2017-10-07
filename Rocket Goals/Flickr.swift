@@ -29,67 +29,70 @@ class Flickr
         let searchRequest = URLRequest(url: searchURL)
         
         URLSession.shared.dataTask(with: searchRequest, completionHandler:
-            { (data, response, error) in
+            {
+                (data, response, error) in
                 
-                if let _ = error {
+                if let _ = error
+                {
                     let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
                     OperationQueue.main.addOperation({
-                        completion(nil, APIError)
-                    })
+                        completion(nil, APIError) })
                     return
                 }
                 
                 guard let _ = response as? HTTPURLResponse,
-                    let data = data else {
+                    let data = data else
+                {
                         let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
                         OperationQueue.main.addOperation({
-                            completion(nil, APIError)
-                        })
+                            completion(nil, APIError) })
                         return
                 }
                 
-                do {
+                do
+                {
                     
                     guard let resultsDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String: AnyObject],
-                        let stat = resultsDictionary["stat"] as? String else {
-                            
-                            let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
-                            OperationQueue.main.addOperation({
-                                completion(nil, APIError)
-                            })
-                            return
-                    }
-                    
-                    switch (stat) {
-                    case "ok":
-                        print("Results processed OK")
-                    case "fail":
-                        if let message = resultsDictionary["message"]
-                        {
-                            
-                            let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:message])
-                            
-                            OperationQueue.main.addOperation({
-                                completion(nil, APIError)
-                            })
-                        }
                         
-                        let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: nil)
-                        
-                        OperationQueue.main.addOperation({
-                            completion(nil, APIError)
-                        })
-                        
-                        return
-                    default:
+                    let stat = resultsDictionary["stat"] as? String else
+                    {
+                            
                         let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
                         OperationQueue.main.addOperation({
-                            completion(nil, APIError)
-                        })
+                            completion(nil, APIError) })
                         return
                     }
                     
-                    guard let photosContainer = resultsDictionary["photos"] as? [String: AnyObject], let photosReceived = photosContainer["photo"] as? [[String: AnyObject]] else {
+                    switch (stat)
+                    {
+                        case "ok":
+                            print("Results processed OK")
+                        
+                    case "fail":
+                            if let message = resultsDictionary["message"]
+                            {
+                            
+                                let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:message])
+                            
+                                OperationQueue.main.addOperation({
+                                    completion(nil, APIError) })
+                            }
+                        
+                            let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: nil)
+                        
+                            OperationQueue.main.addOperation({
+                                completion(nil, APIError) })
+                            return
+                        
+                    default:
+                            let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
+                            OperationQueue.main.addOperation({
+                                completion(nil, APIError) })
+                            return
+                }
+                    
+                    guard let photosContainer = resultsDictionary["photos"] as? [String: AnyObject], let photosReceived = photosContainer["photo"] as? [[String: AnyObject]] else
+                    {
                         
                         let APIError = NSError(domain: "FlickrSearch", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey:"Unknown API response"])
                         OperationQueue.main.addOperation({
@@ -104,7 +107,8 @@ class Flickr
                         guard let photoID = photoObject["id"] as? String,
                             let farm = photoObject["farm"] as? Int ,
                             let server = photoObject["server"] as? String ,
-                            let secret = photoObject["secret"] as? String else {
+                            let secret = photoObject["secret"] as? String else
+                        {
                                 break
                         }
                         let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)

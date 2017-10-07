@@ -18,7 +18,9 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
    
     @IBOutlet var addPicView: UIView!
     @IBOutlet weak var visualView: UIVisualEffectView!
+    
     var effect:UIVisualEffect!
+    var imagePicker: UIImagePickerController!
     
     
     var catagory = ["Fitness","Academic","Personal","Work","Travel"]
@@ -113,31 +115,59 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
    
     @IBAction func imageImport(_ sender: AnyObject)
     {
-        let image = UIImagePickerController()
-        image.delegate = self
+        let takenImage = UIImagePickerController()
+        takenImage.delegate = self
         
-        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        image.allowsEditing = false
-        self.present(image, animated: true)
-        {
-           //
-        }
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
+           
+            if UIImagePickerController.isSourceTypeAvailable(.camera)
+            {
+                takenImage.sourceType = .camera
+                self.present(takenImage, animated: true, completion: nil)
+            }
+            else
+            {
+                print("Camera is not available")
+            }
+            
+        }))
+            
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
+            takenImage.sourceType = .photoLibrary
+        self.present(takenImage, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
-   
+//    @IBAction func takePhoto(_ sender: UIButton)
+//    {
+//        let image = UIImagePickerController()
+//        image.delegate = self
+//        image.sourceType = UIImagePickerControllerSourceType.camera
+//        
+//        self.present(image, animated: true)
+//    }
+
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
-            myImageView.image = image
-        }
-        else
-        {
-            //error
-        }
-        self.dismiss(animated: true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        myImageView.image = image
+        picker.dismiss(animated: true, completion: nil)
+//      imagePicker.dismiss(animated: true, completion: nil)
+//      myImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
     
 //    @IBAction func addPic(_ sender: Any)
 //    {

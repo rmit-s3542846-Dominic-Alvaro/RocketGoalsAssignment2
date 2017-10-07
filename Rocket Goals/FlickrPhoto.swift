@@ -8,7 +8,8 @@
 
 import UIKit
 
-class FlickrPhoto : Equatable {
+class FlickrPhoto : Equatable
+{
     var thumbnail : UIImage?
     var largeImage : UIImage?
     let photoID : String
@@ -16,7 +17,8 @@ class FlickrPhoto : Equatable {
     let server : String
     let secret : String
     
-    init (photoID:String,farm:Int, server:String, secret:String) {
+    init (photoID:String,farm:Int, server:String, secret:String)
+    {
         self.photoID = photoID
         self.farm = farm
         self.server = server
