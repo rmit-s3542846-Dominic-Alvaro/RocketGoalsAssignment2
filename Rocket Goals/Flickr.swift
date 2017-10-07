@@ -103,7 +103,8 @@ class Flickr
                     
                     var flickrPhotos = [FlickrPhoto]()
                     
-                    for photoObject in photosReceived {
+                    for photoObject in photosReceived
+                    {
                         guard let photoID = photoObject["id"] as? String,
                             let farm = photoObject["farm"] as? Int ,
                             let server = photoObject["server"] as? String ,
@@ -114,11 +115,13 @@ class Flickr
                         let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
                         
                         guard let url = flickrPhoto.flickrImageURL(),
-                            let imageData = try? Data(contentsOf: url as URL) else {
+                            let imageData = try? Data(contentsOf: url as URL) else
+                        {
                                 break
                         }
                         
-                        if let image = UIImage(data: imageData) {
+                        if let image = UIImage(data: imageData)
+                        {
                             flickrPhoto.thumbnail = image
                             flickrPhotos.append(flickrPhoto)
                         }
@@ -143,7 +146,7 @@ class Flickr
             return nil
         }
         
-        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(escapedTerm)&per_page=20&format=json&nojsoncallback=1"
+        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(escapedTerm)&per_page=30&format=json&nojsoncallback=1"
         
         guard let url = URL(string:URLString) else {
             return nil

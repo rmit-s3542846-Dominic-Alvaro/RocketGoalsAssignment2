@@ -171,6 +171,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ID9-hY-Wkf">
                                 <rect key="frame" x="179" y="376" width="180" height="199"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3mO-Ki-Ynw">
+                                <rect key="frame" x="179" y="376" width="180" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.27175792770000001" green="0.32097855359999999" blue="0.42118573050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -214,7 +218,7 @@
                         <outlet property="addGoalButton" destination="1qI-gy-a0S" id="hcJ-Xg-hik"/>
                         <outlet property="addPicView" destination="W6v-2c-SLQ" id="4aU-IW-txY"/>
                         <outlet property="goalTextField" destination="SQH-CD-bQA" id="lfs-xi-giB"/>
-                        <outlet property="myImageView" destination="ID9-hY-Wkf" id="jhd-6j-ShJ"/>
+                        <outlet property="myImageView" destination="3mO-Ki-Ynw" id="fE1-5f-T6r"/>
                         <outlet property="pickerViewCat" destination="iun-bb-eer" id="fOJ-WF-rOb"/>
                         <outlet property="termTextField" destination="BzE-KC-0Y3" id="h6T-Ay-i0K"/>
                         <outlet property="visualView" destination="cMH-V8-gxd" id="ObF-1f-Hqm"/>
@@ -244,7 +248,7 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
-                                <segue destination="sce-GB-Pgw" kind="show" id="I01-jd-neg"/>
+                                <segue destination="sce-GB-Pgw" kind="show" identifier="" id="I01-jd-neg"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQM-Gg-vkR">
@@ -317,9 +321,13 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tr9-zd-LcU">
                                             <rect key="frame" x="8" y="8" width="184" height="184"/>
                                             <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="Wor-IV-6qb" appends="YES" id="BJF-p5-Kki"/>
+                                            </connections>
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Tr9-zd-LcU" firstAttribute="leading" secondItem="swR-FJ-2Eh" secondAttribute="leadingMargin" id="3f9-Qh-X1n"/>
                                     <constraint firstItem="Tr9-zd-LcU" firstAttribute="top" secondItem="swR-FJ-2Eh" secondAttribute="topMargin" id="OZK-KS-wSw"/>
@@ -355,6 +363,11 @@
                     <size key="freeformSize" width="320" height="480"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMg-Ez-vTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Wor-IV-6qb">
+                    <connections>
+                        <segue destination="wep-fT-PQm" kind="show" identifier="segImage" id="M1e-nu-PLz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2515" y="938"/>
         </scene>
@@ -470,5 +483,8 @@
             <point key="canvasLocation" x="-703" y="939"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="M1e-nu-PLz"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.99320426669999995" blue="0.99136276459999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

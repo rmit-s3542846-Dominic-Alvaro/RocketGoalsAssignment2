@@ -12,20 +12,15 @@ fileprivate let itemsPerRow: CGFloat = 3
 
 class FlickrPhotosViewController: UICollectionViewController
 {
-    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 10.0, bottom: 50.0, right: 10.0)
     fileprivate var searches = [FlickrSearchResults]()
     fileprivate let flickr = Flickr()
     
+    var imagePass: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        // Do any additional setup after loading the view.
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,21 +28,7 @@ class FlickrPhotosViewController: UICollectionViewController
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    // MARK: UICollectionViewDataSource
-    
 }
-
-
 
 private extension FlickrPhotosViewController
 {
@@ -60,7 +41,7 @@ extension FlickrPhotosViewController : UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        // 1
+        
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
@@ -74,18 +55,14 @@ extension FlickrPhotosViewController : UITextFieldDelegate
             
             if let error = error
             {
-                // 2
                 print("Error searching : \(error)")
                 return
             }
             
             if let results = results
             {
-                // 3
                 print("Found \(results.searchResults.count) matching \(results.searchTerm)")
                 self.searches.insert(results, at: 0)
-                
-                // 4
                 self.collectionView?.reloadData()
             }
         }
@@ -97,39 +74,54 @@ extension FlickrPhotosViewController : UITextFieldDelegate
 }
 extension FlickrPhotosViewController
 {
-    //1
     override func numberOfSections(in collectionView: UICollectionView) -> Int
     {
         return searches.count
     }
     
-    //2
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return searches[section].searchResults.count
     }
     
-    //3
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        //1
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FlickrPhotoCell
-        //2
         let flickrPhoto = photoPath(indexPath: indexPath)
         cell.backgroundColor = UIColor.white
-        //3
         cell.imageView.image = flickrPhoto.thumbnail
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {   //identifies which cell is selected in the array
+        
+        print("you have selected cell ", indexPath.row)
+         let cell = collectionView.cellForItem(at: indexPath) as! FlickrPhotoCell
+        let flickrPhoto = photoPath(indexPath: indexPath)
+        cell.imageView.image = flickrPhoto.thumbnail
+        self.imagePass = cell.imageView.image
+        performSegue(withIdentifier: "segImage", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "segImage"
+        {
+            if let target = segue.destination as? AddGoalViewController
+            {
+               target.getImage = imagePass
+            }
+        }
+    }
+
 }
 extension FlickrPhotosViewController : UICollectionViewDelegateFlowLayout
 {
-    //1
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -137,14 +129,12 @@ extension FlickrPhotosViewController : UICollectionViewDelegateFlowLayout
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
-    //3
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
     
-    // 4
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {

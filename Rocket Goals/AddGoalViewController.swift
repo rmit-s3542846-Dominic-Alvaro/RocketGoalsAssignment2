@@ -20,8 +20,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var visualView: UIVisualEffectView!
     
     var effect:UIVisualEffect!
-    var imagePicker: UIImagePickerController!
-    
+    var getImage:UIImage!
     
     var catagory = ["Fitness","Academic","Personal","Work","Travel"]
     var cataPicker: String?
@@ -73,6 +72,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         visualView.effect = nil
         
         addPicView.layer.cornerRadius = 5
+        
+        myImageView.image = getImage
     }
     
     func animateIn()
@@ -115,8 +116,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
    
     @IBAction func imageImport(_ sender: AnyObject)
     {
-        let takenImage = UIImagePickerController()
-        takenImage.delegate = self
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
         
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         
@@ -124,8 +125,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
            
             if UIImagePickerController.isSourceTypeAvailable(.camera)
             {
-                takenImage.sourceType = .camera
-                self.present(takenImage, animated: true, completion: nil)
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
             }
             else
             {
@@ -135,8 +136,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }))
             
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
-            takenImage.sourceType = .photoLibrary
-        self.present(takenImage, animated: true, completion: nil)
+            imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -156,11 +157,16 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        myImageView.image = image
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            myImageView.image = image
+        }
+        else
+        {
+            print("the photo could not be displayed")
+        }
         picker.dismiss(animated: true, completion: nil)
-//      imagePicker.dismiss(animated: true, completion: nil)
-//      myImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)

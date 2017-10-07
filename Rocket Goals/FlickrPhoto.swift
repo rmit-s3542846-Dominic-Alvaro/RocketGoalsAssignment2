@@ -25,16 +25,21 @@ class FlickrPhoto : Equatable
         self.secret = secret
     }
     
-    func flickrImageURL(_ size:String = "m") -> URL? {
-        if let url =  URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(photoID)_\(secret)_\(size).jpg") {
+    func flickrImageURL(_ size:String = "m") -> URL?
+    {
+        if let url =  URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(photoID)_\(secret)_\(size).jpg")
+        {
             return url
         }
         return nil
     }
     
-    func loadLargeImage(_ completion: @escaping (_ flickrPhoto:FlickrPhoto, _ error: NSError?) -> Void) {
-        guard let loadURL = flickrImageURL("b") else {
-            DispatchQueue.main.async {
+    func loadLargeImage(_ completion: @escaping (_ flickrPhoto:FlickrPhoto, _ error: NSError?) -> Void)
+    {
+        guard let loadURL = flickrImageURL("b") else
+        {
+            DispatchQueue.main.async
+            {
                 completion(self, nil)
             }
             return
@@ -43,15 +48,19 @@ class FlickrPhoto : Equatable
         let loadRequest = URLRequest(url:loadURL)
         
         URLSession.shared.dataTask(with: loadRequest, completionHandler: { (data, response, error) in
-            if let error = error {
-                DispatchQueue.main.async {
+            if let error = error
+            {
+                DispatchQueue.main.async
+                {
                     completion(self, error as NSError?)
                 }
                 return
             }
             
-            guard let data = data else {
-                DispatchQueue.main.async {
+            guard let data = data else
+            {
+                DispatchQueue.main.async
+                {
                     completion(self, nil)
                 }
                 return
@@ -59,7 +68,8 @@ class FlickrPhoto : Equatable
             
             let returnedImage = UIImage(data: data)
             self.largeImage = returnedImage
-            DispatchQueue.main.async {
+            DispatchQueue.main.async
+            {
                 completion(self, nil)
             }
         }).resume()
