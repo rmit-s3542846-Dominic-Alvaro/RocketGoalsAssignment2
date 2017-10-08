@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Goal" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SQH-CD-bQA" customClass="DesignableTextField" customModule="Rocket_Goals" customModuleProvider="target">
-                                <rect key="frame" x="20" y="93" width="339" height="39"/>
+                                <rect key="frame" x="20" y="49" width="339" height="83"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.27175792770000001" green="0.32097855359999999" blue="0.42118573050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -294,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImT-Na-III" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602" y="121"/>
+            <point key="canvasLocation" x="286" y="144"/>
         </scene>
         <!--Flickr Photos View Controller-->
         <scene sceneID="fhw-VB-QE8">
@@ -459,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBs-fU-GBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="1804"/>
+            <point key="canvasLocation" x="286" y="1746"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ra-6D-vW5">
