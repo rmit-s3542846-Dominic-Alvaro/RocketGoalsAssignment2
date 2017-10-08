@@ -8,18 +8,21 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
     
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var termLabel: UILabel!
     @IBOutlet weak var descrText: UITextView!
     @IBOutlet weak var catagoryText: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     var myGoal: String?
     var myTerm: String?
     var myDescr: String?
     
     var myCatagory: String?
+    
+    var myImage:NSData?
     
     
     override func viewDidLoad() {
@@ -28,7 +31,10 @@ class DetailViewController: UIViewController {
         goalLabel.text = myGoal
         termLabel.text = myTerm
         descrText.text = myDescr
-        //catagoryText.text = myCatagory
+        catagoryText.text = myCatagory
+        
+        let data = UserDefaults.standard.object(forKey: "savedImage") as! NSData
+        imageView.image = UIImage(data: data as Data)
     }
 
     override func didReceiveMemoryWarning() {

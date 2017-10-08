@@ -22,6 +22,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var effect:UIVisualEffect!
     var getImage:UIImage!
     
+    var imageDataPass:UIImage!
+    
     var catagory = ["Fitness","Academic","Personal","Work","Travel"]
     var cataPicker: String?
     
@@ -55,6 +57,18 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         goal.term = termTextField.text!
         goal.descr = addDescrTextField.text!
         goal.catagory = cataPicker!
+        
+        
+        let imageData:NSData = UIImagePNGRepresentation(imageDataPass)! as NSData
+        //saving image
+        UserDefaults.standard.set(imageData, forKey: "savedImage")
+        
+        goal.image = imageData
+        
+
+        
+        
+        
         
         //Save the data to coredata
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
@@ -160,6 +174,10 @@ class AddGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             myImageView.image = image
+            
+            imageDataPass = image
+            
+            
         }
         else
         {

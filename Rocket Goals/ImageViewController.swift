@@ -32,6 +32,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             myImageView.image = image
+            
         }
         else
         {

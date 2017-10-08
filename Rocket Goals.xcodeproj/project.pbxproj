@@ -130,6 +130,7 @@
 		7716AF661F4ED424000472E4 /* Rocket Goals */ = {
 			isa = PBXGroup;
 			children = (
+				774FDF7F1F89B71F00D8868B /* Flickr */,
 				775151381F7E16D20066DEAE /* Controllers */,
 				7751513A1F7E170D0066DEAE /* Model */,
 				7716AF651F4ED424000472E4 /* Products */,
@@ -142,6 +143,18 @@
 				7716AF671F4ED424000472E4 /* AppDelegate.swift */,
 			);
 			path = "Rocket Goals";
+			sourceTree = "<group>";
+		};
+		774FDF7F1F89B71F00D8868B /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				77FF51101F81DE2400E00C00 /* Flickr.swift */,
+				77FF51121F81DEA000E00C00 /* FlickrSearchResults.swift */,
+				77FF510E1F81DD4B00E00C00 /* FlickrPhotosViewController.swift */,
+				77FF51141F81DF2300E00C00 /* FlickrPhoto.swift */,
+				77FF51161F81DF6500E00C00 /* FlickrPhotoCell.swift */,
+			);
+			name = Flickr;
 			sourceTree = "<group>";
 		};
 		775151371F7E16B90066DEAE /* Design */ = {
@@ -159,11 +172,6 @@
 				7716AFC01F4ED70A000472E4 /* DetailViewController.swift */,
 				7705EDB01F5BE289000F35E5 /* CategoryViewController.swift */,
 				7716AFBE1F4ED6FD000472E4 /* AddGoalViewController.swift */,
-				77FF510E1F81DD4B00E00C00 /* FlickrPhotosViewController.swift */,
-				77FF51101F81DE2400E00C00 /* Flickr.swift */,
-				77FF51121F81DEA000E00C00 /* FlickrSearchResults.swift */,
-				77FF51141F81DF2300E00C00 /* FlickrPhoto.swift */,
-				77FF51161F81DF6500E00C00 /* FlickrPhotoCell.swift */,
 				7719CB171F873F6800D15523 /* ImageViewController.swift */,
 			);
 			name = Controllers;

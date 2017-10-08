@@ -21,6 +21,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var myCatagoryPass: String?
     
+    var myImagePass:NSData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -49,13 +51,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = UITableViewCell()
         
         let task = tasks[indexPath.row]
+       
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.red
         
         myGoalPass = task.name!
         myTermPass = task.term!
         myDescrPass = task.descr!
         myCatagoryPass = task.catagory!
+        myImagePass = task.image
         
-        cell.textLabel?.text = task.name!
+        if task.catagory == "Academic"{
+            cell.textLabel?.text = "📖  \(task.name!)"
+            cell.selectedBackgroundView = bgColorView
+        }
+        else if task.catagory == "Fitness"{
+            cell.textLabel?.text = "💪🏽  \(task.name!)"
+        }
+        else if task.catagory == "Personal"{
+            cell.textLabel?.text = "😛  \(task.name!)"
+        }
+        else if task.catagory == "Work"{
+            cell.textLabel?.text = "💼  \(task.name!)"
+        }
+        else if task.catagory == "Travel"{
+            cell.textLabel?.text = "🚀  \(task.name!)"
+        }
+            
+        else {
+            cell.textLabel?.text = task.name
+        }
         
         
         
@@ -95,6 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 destination.myTerm = task.term!
                 destination.myDescr = task.descr!
                 destination.myCatagory = task.catagory!
+                destination.myImage = task.image!
             }
    
             
